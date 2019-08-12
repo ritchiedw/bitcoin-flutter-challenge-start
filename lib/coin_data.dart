@@ -1,4 +1,5 @@
-//TODO: Add your imports here.
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 const List<String> currenciesList = [
   'AUD',
@@ -33,6 +34,18 @@ const List<String> cryptoList = [
 const bitcoinAverageURL =
     'https://apiv2.bitcoinaverage.com/indices/global/ticker';
 
+//https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD
 class CoinData {
   //TODO: Create your getCoinData() method here.
+
+  Future getCoinData() async {
+    http.Response response = await http.get(bitcoinAverageURL);
+
+    if (response.statusCode == 200) {
+      String data = response.body;
+      print(data);
+      var decodeData = jsonDecode(data);
+      return decodeData['last'];
+    }
+  }
 }
