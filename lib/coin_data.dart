@@ -39,13 +39,16 @@ class CoinData {
   //TODO: Create your getCoinData() method here.
 
   Future getCoinData() async {
-    http.Response response = await http.get(bitcoinAverageURL);
+    print("getCoinData");
+    http.Response response = await http.get(bitcoinAverageURL + "/BTCUSD");
 
     if (response.statusCode == 200) {
       String data = response.body;
-      print(data);
+      //print(data);
       var decodeData = jsonDecode(data);
       return decodeData['last'];
+    } else {
+      print(response.statusCode);
     }
   }
 }
