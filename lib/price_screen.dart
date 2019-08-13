@@ -10,7 +10,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
-  String currentPrice;
+  String currentPrice = '?';
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -52,14 +52,24 @@ class _PriceScreenState extends State<PriceScreen> {
   //TODO: Create a method here called getData() to get the coin data from coin_data.dart
   void getData() async {
     CoinData cd = CoinData();
-    currentPrice = await cd.getCoinData();
+    String data = await cd.getCoinData();
+    setState(() {
+      currentPrice = data;
+    });
   }
 
   @override
   void initState() {
     super.initState();
     //TODO: Call getData() when the screen loads up.
+    //setState(() {
     getData();
+    //setState(() {
+    //  print('setState');
+    //  currentPrice;
+    //});
+
+    //});
   }
 
   @override

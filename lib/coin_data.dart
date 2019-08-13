@@ -39,6 +39,8 @@ class CoinData {
   //TODO: Create your getCoinData() method here.
 
   Future getCoinData() async {
+    return new Future.delayed(const Duration(seconds: 2), () => '11000');
+
     http.Response response = await http.get(bitcoinAverageURL);
 
     if (response.statusCode == 200) {
