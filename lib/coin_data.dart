@@ -45,9 +45,11 @@ class CoinData {
 
     if (response.statusCode == 200) {
       String data = response.body;
-      print(data);
+      //print(data);
       var decodeData = jsonDecode(data);
       return decodeData['last'];
+    } else {
+      print(response.statusCode);
     }
   }
 }
